@@ -12,6 +12,4 @@ module.exports = {
     version: require("../package.json").version,
 
     // Structures
-    Subject: require("./Structures/Subjects/Subject"),
-    Teacher: require("./Structures/Subjects/Teacher"),
 }

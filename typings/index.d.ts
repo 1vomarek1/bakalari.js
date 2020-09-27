@@ -17,9 +17,9 @@ declare module 'bakalari.js' {
 
     // Util
     export type TokenResponse = {
-        access_token: string;
-        refresh_token: string;
-        expires_in: number;
+        readonly access_token: string;
+        readonly refresh_token: string;
+        readonly expires_in: number;
     }
 
     export class TokenManager {
@@ -32,25 +32,21 @@ declare module 'bakalari.js' {
     }
 
     // Structures
-    export class Subject {
-        readonly name;
-        readonly abbrev;
-        readonly teacher;
-        readonly id;
-
-        public constructor(name: string, abbrev: string, teacher: Teacher, id: string);
+    export interface Subject {
+        readonly name: string;
+        readonly abbrev: string;
+        readonly teacher: Teacher;
+        readonly id: string;
     }
 
-    export class Teacher {
-        readonly name;
-        readonly abbrev;
-        readonly email;
-        readonly web;
-        readonly schoolPhone;
-        readonly homePhone;
-        readonly mobilePhone;
-
-        public constructor(name: string, abbrev: string, email: string, web: string, schoolPhone: string, homePhone: string, mobilePhone: string);
+    export interface Teacher {
+        readonly name: string;
+        readonly abbrev: string;
+        readonly email: string;
+        readonly web: string;
+        readonly schoolPhone: string;
+        readonly homePhone: string;
+        readonly mobilePhone: string;
     }
 
 }

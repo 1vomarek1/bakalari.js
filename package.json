@@ -13,9 +13,6 @@
   "devDependencies": {
     "@types/node": "^14.10.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "1vomarek1",
   "license": "ISC"
 }
