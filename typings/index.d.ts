@@ -13,6 +13,7 @@ declare module 'bakalari.js' {
         public refreshToken(): Promise<void>;
 
         public getSubjects(): Promise<Array<Subject>>;
+        public getSubstitutions(): Promise<Array<Substitution>>;
     }
 
     // Util
@@ -29,6 +30,10 @@ declare module 'bakalari.js' {
 
     export class SubjectManager {
         public getSubjects(url: string, token: string): Promise<Array<JSON>>;
+    }
+
+    export class SubstitutionManager {
+        public getSubstitutions(url: string, token: string): Promise<Array<JSON>>;
     }
 
     // Structures
@@ -48,5 +53,17 @@ declare module 'bakalari.js' {
         readonly homePhone: string;
         readonly mobilePhone: string;
     }
+
+    export interface Substitution {
+        readonly subject: any;
+        readonly day: string;
+        readonly hours: string;
+        readonly type: string;
+        readonly description: string;
+        readonly time: string;
+        readonly TypeAbbrev: string;
+        readonly TypeName: string;
+    }
+
 
 }

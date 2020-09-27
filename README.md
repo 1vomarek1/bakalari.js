@@ -9,7 +9,7 @@ The module currently isn't downloadable however you can still use code from this
 
 ## Usage
 
-```nodejs
+```js
 // Import bakalari.js
 const bakalari = require("bakalari.js");
 

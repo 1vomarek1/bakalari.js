@@ -1,5 +1,6 @@
 const TokenManager = require("../Util/TokenManager");
 const SubjectManager = require("../Util/SubjectManager");
+const SubstitutionManager = require("../Util/SubstitutionManager");
 
 /**
  * This is the starting point of your bakalari client.
@@ -84,7 +85,6 @@ class User {
             for (const subjectJSON of subjectsJSON) {
 
                 /**
-                 *
                  * @type {Teacher}
                  */
                 const teacher = {
@@ -98,7 +98,6 @@ class User {
                 }
 
                 /**
-                 *
                  * @type {Subject}
                  */
                 const subject = {
@@ -114,6 +113,48 @@ class User {
             accept(subjects);
 
         });
+
+    }
+
+    /**
+     * Get all substitutions from bakalari website.
+     * @returns {Promise<Array<Substitution>>}
+     */
+    getSubstitutions() {
+
+        return new Promise(async (accept, reject) => {
+
+            if (this.valid_until <= Date.now()) await this.refreshToken();
+
+            const substitutionsJSON = await new SubstitutionManager().getSubstitutions(this.url, this.access_token)
+                .catch(() => {
+                    return reject();
+                });
+
+            const substitutions = [];
+
+            for (const substitutionJSON of substitutionsJSON) {
+
+                /**
+                 * @type {Substitution}
+                 */
+                const substitution = {
+                    subject: substitutionJSON["ChangeSubject"],
+                    day: substitutionJSON["Day"],
+                    hours: substitutionJSON["Hours"],
+                    type: substitutionJSON["ChangeType"],
+                    description: substitutionJSON["Description"],
+                    time: substitutionJSON["Time"],
+                    TypeAbbrev: substitutionJSON["TypeAbbrev"],
+                    TypeName: substitutionJSON["TypeName"]
+                }
+
+                substitutions.push(substitution);
+
+            }
+
+            accept(substitutions);
+        })
 
     }
 

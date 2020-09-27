@@ -22,6 +22,7 @@ class SubjectManager {
                     if (!res.ok) reject();
                     accept((await res.json())["Subjects"]);
                 })
+                .catch((err) => reject(err));
 
         })
 
